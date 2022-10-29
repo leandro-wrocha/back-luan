@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14.5-bullseye
+    container_name: machines
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: "machines"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_USER: "postgres"
+    volumes: 
+      - /var/www/databases/machines:/var/lib/postgresql/data
+    networks:
+      -  net-machines-database
+
+
+networks: 
+  net-machines-database:
+    driver: bridge
