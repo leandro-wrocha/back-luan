@@ -18,7 +18,6 @@ export class MachineController {
     } catch (error) {
       console.log(error);
     }
-    
   }
 
   async create(request: Request, response: Response) {
@@ -27,6 +26,8 @@ export class MachineController {
       await prisma.machine.create({
         data
       });
+
+      return response.status(201).end();
     } catch (error) {
       console.log(error);
     }
