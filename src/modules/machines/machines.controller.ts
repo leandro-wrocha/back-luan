@@ -20,6 +20,23 @@ export class MachineController {
     }
   }
 
+  async find(request: Request, response: Response) {
+    const { id } = request.params;
+
+    try {
+      const machine = await prisma.machine.findFirst({
+        where: {
+          id
+        },
+        include: {
+          piece_machine: true,
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async create(request: Request, response: Response) {
     const data = request.body as IRequest;
     try {
