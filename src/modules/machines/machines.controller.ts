@@ -32,6 +32,8 @@ export class MachineController {
           piece_machine: true,
         }
       })
+
+      return response.status(200).json(machine)
     } catch (error) {
       console.log(error);
     }
