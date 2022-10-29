@@ -48,6 +48,8 @@ export class PiecesController {
           }
         });
       }
+
+      return response.status(201).end();
     } catch (error) {
       console.log(error);
     }
