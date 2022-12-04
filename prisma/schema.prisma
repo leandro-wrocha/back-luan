@@ -11,25 +11,24 @@ datasource db {
 }
 
 model Machine {
-  id String @id() @default(uuid())
-  name String
-  code_machine String
-  quantity Int
-  image String
+  id              String   @id() @default(uuid())
+  name            String
+  code_machine    String   @unique
+  quantity        Int
+  image           String
   quantity_pieces Int
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  created_at      DateTime @default(now())
+  updated_at      DateTime @default(now())
 
   piece_machine Piece[]
 }
 
 model Piece {
-  id String @id @default(uuid())
-  name String
-  code_machine String
-  quantity Int
-  image String
-  machine_id String
+  id            String  @id @default(uuid())
+  name          String
+  code_machine  String
+  quantity      Int
+  image         String
+  machine_id    String
   piece_machine Machine @relation(fields: [machine_id], references: [id])
 }
-
