@@ -14,7 +14,6 @@ model Machine {
   id              String   @id() @default(uuid())
   name            String
   code_machine    String   @unique
-  quantity        Int
   image           String
   quantity_pieces Int
   created_at      DateTime @default(now())

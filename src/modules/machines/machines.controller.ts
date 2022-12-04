@@ -4,9 +4,8 @@ import { prisma } from '../../shared/database';
 interface IRequest {
   name: string;
   code_machine: string;
-  quantity: number;
   image: string;
-  quantity_pieces: number; 
+  quantity_pieces: number;
 }
 
 export class MachineController {
@@ -21,12 +20,12 @@ export class MachineController {
   }
 
   async find(request: Request, response: Response) {
-    const { id } = request.params;
+    const { code_machine } = request.params;
 
     try {
       const machine = await prisma.machine.findFirst({
         where: {
-          id
+          code_machine
         },
         include: {
           piece_machine: true,
@@ -42,6 +41,16 @@ export class MachineController {
   async create(request: Request, response: Response) {
     const data = request.body as IRequest;
     try {
+      const unique = await prisma.machine.findUnique({
+        where: {
+          code_machine: data.code_machine
+        }
+      })
+
+      if (unique !== null) {
+        return response.status(400).send({ message: "Essa máquina já existe" })
+      }
+
       await prisma.machine.create({
         data
       });

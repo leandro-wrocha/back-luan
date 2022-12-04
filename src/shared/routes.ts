@@ -9,7 +9,7 @@ const piecesController = new PiecesController();
 
 // Machines
 routes.get('/machines', machinesController.list);
-routes.get('/machine/:id', machinesController.find);
+routes.get('/machine/:code_machine', machinesController.find);
 routes.post('/machines', machinesController.create);
 routes.put('/machines/:id', machinesController.update);
 routes.delete('/machine/:id', machinesController.delete);
