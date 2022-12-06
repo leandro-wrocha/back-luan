@@ -31,3 +31,12 @@ model Piece {
   machine_id    String
   piece_machine Machine @relation(fields: [machine_id], references: [id])
 }
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  googleId  String   @unique
+  avatarURL String?
+  createdAt DateTime @default(now())
+}
