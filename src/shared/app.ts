@@ -8,7 +8,6 @@ const connectionDatabase = async () => {
 
 connectionDatabase();
 
-
 const app = express();
 
 app.use(express.json());
